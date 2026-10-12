@@ -1,5 +1,5 @@
 ShoppingList list = new ShoppingList("items.txt");
-list.Load();
+//list.Load();
 
 while (true)
 {

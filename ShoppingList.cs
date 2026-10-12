@@ -20,12 +20,13 @@ class ShoppingList
         items.RemoveAt(number - 1);
     }
 
-    // Adds up the price of every item on the list.
+    // Adds up the price of every item on the list. 
+    // (Ändrade int i = 1 -> int i = 0)
     public int Total()
     {
         int sum = 0;
 
-        for (int i = 1; i < items.Count; i++)
+        for (int i = 0; i < items.Count; i++)
         {
             sum += items[i].Price;
         }
