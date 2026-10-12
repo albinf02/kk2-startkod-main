@@ -9,7 +9,13 @@ Varför: loopen i metoden total i shoppinglist.cs började med int i = 1. Då ho
 
 lösning: jag ändrade int i = 1 till int i = 0. då hoppar den inte över första varan i listan.
 
-### Fel 2:
+### Fel 2: 
+krasch vid felaktig inmatning
+Vad hände: programmet kraschade med FormatException om man skrev något annat än ett tal i menyn, priset eller numret.
+
+varför: Koden använde int.Parse för att göra inmatningen till ett tal. Om det inte går när man exempelvis skriver bokstäver blir det FormatException.
+
+lösning: jag ändrade till int.TryParse, som returnerar false istället för att krascha, programmet skriver ett meddelande och går tillbaka till menyn. 
 
 ### Fel 3:
 
