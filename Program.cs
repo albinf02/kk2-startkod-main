@@ -39,7 +39,10 @@ while (true)
             Console.WriteLine("Numret måste vara ett heltal.");
             continue;
         }
-        list.RemoveAt(number);
+        if (!list.RemoveAt(number))
+        {
+             Console.WriteLine("Det finns ingen vara med det numret.");
+        }
     }
     else if (choice == 3)
     {
