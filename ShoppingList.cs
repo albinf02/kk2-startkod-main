@@ -3,15 +3,24 @@ class ShoppingList
 {
     private List<Item> items = new List<Item>();
     private string path;
-
-    public ShoppingList(string path)
+    private int budget;
+    public ShoppingList(string path, int budget)
     {
         this.path = path;
+        this.budget = budget;
     }
 
-    public void Add(Item item)
+    // Adds the item if it fits within the budget.
+    // Returns false if the total would go over the budget.
+    public bool Add(Item item)
     {
+        if (Total() + item.Price > budget)
+        {
+            return false;
+        }
+
         items.Add(item);
+        return true;
     }
 
     // Removes the item the user sees as number 1, 2, 3 ...

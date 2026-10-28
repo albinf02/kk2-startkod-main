@@ -1,2 +1,2 @@
-30;test
-30;Mjölk
+400;Mjölk
+100;Ost

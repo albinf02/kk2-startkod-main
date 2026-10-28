@@ -1,4 +1,4 @@
-ShoppingList list = new ShoppingList("items.txt");
+ShoppingList list = new ShoppingList("items.txt", 500);
 list.Load();
 
 while (true)
@@ -31,19 +31,23 @@ while (true)
         }
         try
         {
-            list.Add(new Item(name, price));
-        }
-              catch (ArgumentOutOfRangeException)
-        {
-            Console.WriteLine("Priset får inte vara negativt. ");
-        }
-            catch (ArgumentException)
-        {
-            Console.WriteLine("Namnet får inte vara tomt. ");
-        }
+            Item item = new Item(name, price);
+            if (!list.Add(item))
+            {
+                Console.WriteLine("Varan får inte plats i budgeten.");
             }
-        
-    
+        }
+        catch (ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("Priset får inte vara negativt.");
+        }
+        catch (ArgumentException)
+        {
+            Console.WriteLine("Namnet får inte vara tomt.");
+        }
+    }
+
+
     else if (choice == 2)
     {
         Console.Write("Nummer: ");
@@ -54,7 +58,7 @@ while (true)
         }
         if (!list.RemoveAt(number))
         {
-             Console.WriteLine("Det finns ingen vara med det numret.");
+            Console.WriteLine("Det finns ingen vara med det numret.");
         }
     }
     else if (choice == 3)
