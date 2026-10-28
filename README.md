@@ -3,11 +3,11 @@
 ## Felrapport
 
 ### Fel 1: Totalsumma för låg
-- Vad hände: totalsumman blev för låg. tre varor exempelvis 10 + 10 + 50 blev 60kr istället för 70kr.
+- Vad hände: totalsumman blev för låg. Tre varor exempelvis 10 + 10 + 50 blev 60kr istället för 70kr.
 
-- Varför: loopen i metoden total i shoppinglist.cs började med int i = 1. Då hoppar den över första varan. den börjar inte på index 0.
+- Varför: Loopen i metoden total i shoppinglist.cs började med int i = 1. Då hoppar den över första varan. den börjar inte på index 0.
 
-- Lösning: jag ändrade int i = 1 till int i = 0. då hoppar den inte över första varan i listan.
+- Lösning: Jag ändrade int i = 1 till int i = 0. då hoppar den inte över första varan i listan.
 
 ### Fel 2: krasch vid felaktig inmatning
 
@@ -23,7 +23,7 @@
 
 - Varför: Metoden RemoveAt i ShoppingList.cs anropade items.RemoveAt(number - 1 ) utan att kontrollera att numret fanns i listan. Därför blev det ArgumentOutOfRangeException.
 
-- Lösning: RemoveAt kontrollerar nu att numret ligger mellan 1 och antalet varor. Annars retunerar den false istället för att ta bort något. Program.cs kollar det nu och matar ut "Det finns ingen vara med det numret"
+- Lösning: RemoveAt kontrollerar nu att numret ligger mellan 1 och antalet varor. Annars returnerar den false istället för att ta bort något. Program.cs kollar det nu och matar ut "Det finns ingen vara med det numret".
 
 ### Fel 4: Save säger "sparad" även när det misslyckas
 
@@ -39,7 +39,7 @@
 
 - Varför: Load delade filen på \n, men Save skriver \r\n. Det gjorde att ett \r hängde kvar i varje namn och att sista raden blev tom, vilket gav kraschen. Load använde dessutom int.Parse och läste filen utan att kolla om den fanns.
 
-- Lösning: Load kollar nu först om filen finns. Filen läses med File.ReadAllLines så att inga \r blir kvar, tomma eller felaktiga rader hoppas över, och int.TryParse anvädns istället för int.Parse.
+- Lösning: Load kollar nu först om filen finns. Filen läses med File.ReadAllLines så att inga \r blir kvar, tomma eller felaktiga rader hoppas över, och int.TryParse används istället för int.Parse.
 
 ### Fel 6: Listan läses inte in vid start
 

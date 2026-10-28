@@ -113,7 +113,14 @@ class ShoppingList
             {
                 continue;
             }
-            items.Add(new Item(parts[1], price));
+            try
+            {
+                items.Add(new Item(parts[1], price));
+            }
+            catch (ArgumentException)
+            {
+                // Skip lines with an empty name or a negative price.
+            }
         }
     }
 }

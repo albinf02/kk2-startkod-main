@@ -29,8 +29,21 @@ while (true)
             Console.WriteLine("Priset måste vara ett heltal.");
             continue;
         }
-        list.Add(new Item(name, price));
-    }
+        try
+        {
+            list.Add(new Item(name, price));
+        }
+              catch (ArgumentOutOfRangeException)
+        {
+            Console.WriteLine("Priset får inte vara negativt. ");
+        }
+            catch (ArgumentException)
+        {
+            Console.WriteLine("Namnet får inte vara tomt. ");
+        }
+            }
+        
+    
     else if (choice == 2)
     {
         Console.Write("Nummer: ");
