@@ -84,4 +84,8 @@ while (true)
     {
         break;
     }
+        else
+    {
+        Console.WriteLine("Skriv en siffra mellan 1 och 5. ");
+    }
 }
