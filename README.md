@@ -41,13 +41,14 @@
 
 - Lösning: Load kollar nu först om filen finns. Filen läses med File.ReadAllLines så att inga \r blir kvar, tomma eller felaktiga rader hoppas över, och int.TryParse anvädns istället för int.Parse.
 
-### Fel 6: 
+### Fel 6: Listan läses inte in vid start
 
-- Vad hände:
+- Vad hände: Varorna försvann när man startade om programmet, fast man hade sparat.
 
-- Varför:
+- Varför: list.Load() i Program.cs var bortkommenterad så filen lästes aldrig in.
 
-- Lösning:
+- Lösning: Jag lagade först Load (fel 5) och tog sedan bort kommentaren, så att listan nu läses in. 
+
 ## Designval
 
 ## Klassdiagram
