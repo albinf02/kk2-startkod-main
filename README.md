@@ -26,12 +26,13 @@ loopen i metoden total i shoppinglist.cs började med int i = 1. Då hoppar den 
 
 - Lösning: RemoveAt kontrollerar nu att numret ligger mellan 1 och antalet varor. Annars retunerar den false istället för att ta bort något. Program.cs kollar det nu och matar ut "Det finns ingen vara med det numret"
 
-### Fel 4:
-- Vad hände:
+### Fel 4: Save säger "sparad" även när det misslyckas
+- Vad hände: När items.txt var skrivskyddad skrev programmet ändå "Listan är sparad." Ingenting sparades i filen.
 
-- Varför:
+- Varför: catch-blocket i Save var tomt och fångade alla fel utan att säga något. Meddelandet låg efter try/catch så det skrevs ut även när det blev fel.
 
-- Lösning:
+- Lösning: Jag flyttade "Listan är sparad." in i try, efter File.WriteAllText, så det visas bara om det sparas. Den tomma catchen är utbytt mot IOException och UnauthorizedAccessException som skriver ut ett felmeddelande.
+
 ### Fel 5:
 - Vad hände:
 

@@ -28,7 +28,7 @@ class ShoppingList
     }
 
     // Adds up the price of every item on the list. 
-    
+
     public int Total()
     {
         int sum = 0;
@@ -74,16 +74,20 @@ class ShoppingList
         {
             lines.Add($"{item.Price};{item.Name}");
         }
-
         try
         {
             File.WriteAllText(path, string.Join("\r\n", lines) + "\r\n");
+            Console.WriteLine("Listan är sparad.");
         }
-        catch
+        catch (IOException)
         {
+            Console.WriteLine("Kunde inte spara listan. Filen är upptagen.");
+        }
+        catch (UnauthorizedAccessException)
+        {
+            Console.WriteLine("Kunde inte spara listan. Filen är skrivskyddad.");
         }
 
-        Console.WriteLine("Listan är sparad.");
     }
 
     // Reads the file back into the list.
