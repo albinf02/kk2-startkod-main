@@ -51,6 +51,12 @@
 
 ## Designval
 
+När en vara inte får plats i budgeten returnerar Add false. Den kastar alltså inget undantag. Jag valde false eftersom det inte är fel i programmet att budgeten tar slut. Det är ju något som kan hända i verkliga livet och något man måste förhålla sig till. Undantag använder jag i Item istället, för där handlar det om värden som aldrig får finnas, som ett tomt namn eller ett negativt pris. Det fungerar på samma sätt som RemoveAt som också returnerar false. 
+
+I Program.cs kollar jag svaret med en if-sats och matar ut "Varan får inte plats i budgeten." om det blir false. 
+
+När programmet startar läser varorna in från filen utan att budgeten kollas, annars skulle sparade varor kunna försvinna. 
+
 ## Klassdiagram
 
 
