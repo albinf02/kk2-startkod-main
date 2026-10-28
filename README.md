@@ -59,4 +59,31 @@ När programmet startar läser varorna in från filen utan att budgeten kollas, 
 
 ## Klassdiagram
 
+```mermaid
+classDiagram
+    class Program {
+        list : ShoppingList
+        menyn i en while-loop
+    }
+    class ShoppingList {
+        -List~Item~ items
+        -string path
+        -int budget
+        +Add(Item item) bool
+        +RemoveAt(int number) bool
+        +Total() int
+        +Find(string name) Item
+        +Print()
+        +Save()
+        +Load()
+    }
+    class Item {
+        +string Name
+        +int Price
+        +Item(string name, int price)
+        +ToString() string
+    }
+    Program --> ShoppingList : använder
+    ShoppingList --> Item : innehåller
+```
 
