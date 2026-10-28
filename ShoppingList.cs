@@ -87,19 +87,33 @@ class ShoppingList
         {
             Console.WriteLine("Kunde inte spara listan. Filen är skrivskyddad.");
         }
-
     }
 
-    // Reads the file back into the list.
+    // Reads the file back into the list. Skips lines that cannot be read.
     public void Load()
     {
-        string text = File.ReadAllText(path);
-        string[] lines = text.Split('\n');
+        if (!File.Exists(path))
+        {
+            return;
+        }
+        string[] lines = File.ReadAllLines(path);
 
         foreach (string line in lines)
         {
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                continue;
+            }
             string[] parts = line.Split(';');
-            items.Add(new Item(parts[1], int.Parse(parts[0])));
+            if (parts.Length != 2)
+            {
+                continue;
+            }
+            if (!int.TryParse(parts[0], out int price))
+            {
+                continue;
+            }
+            items.Add(new Item(parts[1], price));
         }
     }
 }
