@@ -33,21 +33,23 @@
 
 - Lösning: Jag flyttade "Listan är sparad." in i try, efter File.WriteAllText, så det visas bara om det sparas. Den tomma catchen är utbytt mot IOException och UnauthorizedAccessException som skriver ut ett felmeddelande.
 
-### Fel 5: Krasch vid inläsning av filen
+### Fel 5: Krasch när items.txt saknas 
 
-- Vad hände: När Load anropades kraschade programmet direkt vid start med System.IndexOutOfRangeException.
+- Vad hände: Om items.txt inte fanns kraschade programmet direkt vid start med FileNotFoundException.
 
-- Varför: Load delade filen på \n, men Save skriver \r\n. Det gjorde att ett \r hängde kvar i varje namn och att sista raden blev tom, vilket gav kraschen. Load använde dessutom int.Parse och läste filen utan att kolla om den fanns.
+- Varför: Load använde File.ReadAllText utan att först kolla om filen fanns.
 
-- Lösning: Load kollar nu först om filen finns. Filen läses med File.ReadAllLines så att inga \r blir kvar, tomma eller felaktiga rader hoppas över, och int.TryParse används istället för int.Parse.
+- Lösning: Load kollar nu med File.Exists om filen finns. Om den inte gör det startar programmet med en tom lista.
 
-### Fel 6: Listan läses inte in vid start
+### Fel 6: Krasch vid inläsning av filen
 
-- Vad hände: Varorna försvann när man startade om programmet, fast man hade sparat.
+- Vad hände: Programmet kraschade vid start med IndexOutOfRangeException. Varor som syntes i listan hittades inte heller när man sökte på dem.
 
-- Varför: list.Load() i Program.cs var bortkommenterad så filen lästes aldrig in.
+- Varför: Load delade filen på \n, men Save skriver \r\n. Det gjorde att ett \r hängde kvar i varje namn och att sista raden blev tom, vilket gav kraschen. Load använde dessutom int.Parse, som kraschar på trasiga rader.
 
-- Lösning: Jag lagade först Load (fel 5) och tog sedan bort kommentaren, så att listan nu läses in. 
+- Lösning: Filen läses med File.ReadAllLines så att inga \r blir kvar. Tomma eller felaktiga rader hoppas över, och int.TryParse används i stället för int.Parse. 
+
+Notering: I min första inlämning hade jag kommenterat bort list.Load() i Program.cs för att programmet inte skulle krascha. Nu är Load lagad och anropet är tillbaka.
 
 ## Designval
 
